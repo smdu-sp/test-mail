@@ -11,8 +11,8 @@ export async function GET() {
     function enviarEmail() {
         transporter.sendMail(
             {
-                from: "vmabreu@prefeitura.sp.gov.br",
-                to: "blvieira@prefeitura.sp.gov.br",
+                from: "blvieira@prefeitura.sp.gov.br",
+                to: "vmabreu@prefeitura.sp.gov.br",
                 subject: "Test message",
                 text: "I hope this message gets delivered!",
             },
