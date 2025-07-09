@@ -15,62 +15,55 @@ function geraProtocolo(id: number) {
   return `CMPU-2025-${protocolo.padStart(10, "0")}`;
 }
 
-function formataEmail(protocolo: string) {
+function formataEmail(protocolo: string, nome: string) {
     const emailFormato = `<!DOCTYPE html>
         <html>
-        <head>
-        <title>Confirmação de Inscrição</title>
-        <style>
-            body {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            color: #333;
-            }
-            .container {
-            width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            }
-            .header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            }
-            .content {
-            padding: 20px;
-            }
-            .footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            }
-        </style>
-        </head>
-        <body>
-        <div class="container">
-            <div class="header">
-            <h2>Confirmação de Inscrição</h2>
-            </div>
-            <div class="content">
-            <p>Olá [nome do usuário],</p>
-            <p>Sua inscrição foi realizada com sucesso!</p>
-            <p>Seu código de protocolo é: <strong>${protocolo}</strong></p>
-            </div>
-        </div>
-        </body>
+            <head>
+                <title>Confirmação de Inscrição</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        font-size: 14px;
+                        color: #000;
+                    }
+                    .container {
+                        width: 600px;
+                        margin: 40px auto;
+                        padding: 0;
+                        background-color: #fff;
+                        border: 1px solid #000;
+                        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                    }
+                    .header {
+                        background-color: #000;
+                        color: #fff;
+                        padding: 10px;
+                        text-align: center;
+                    }
+                    .content {
+                        padding: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h2>Confirmação de Inscrição</h2>
+                    </div>
+                    <div class="content">
+                        <p>Olá, ${nome}!</p>
+                        <p>Sua inscrição foi realizada com sucesso!</p>
+                        <p>Seu código de protocolo é: <strong>${protocolo}</strong></p>
+                    </div>
+                </div>
+            </body>
         </html>`;
     return emailFormato;
 }
 
 
 export async function POST(request: Request) {
-    function enviarEmail(email: string, protocolo: string) {
+    function enviarEmail(email: string, protocolo: string, nome: string) {
         const transporter = nodemailer.createTransport({
             sendmail: true,
             newline: "unix",
@@ -80,9 +73,10 @@ export async function POST(request: Request) {
             {
                 from: "Não Responda - SMUL <smul-naoresponda@prefeitura.sp.gov.br>",
                 to: email,
-                subject: "CMPU 2025",
+                bcc: ["cmpu@prefeitura.sp.gov.br", "cmpu_smul@prefeitura.sp.gov.br"],
+                subject: "CMPU 2025 - Inscrição foi registrada com sucesso!",
                 text: "Sua inscrição foi registrada com sucesso! \n\nSeu protocolo de inscrição é: " + protocolo,
-                html: formataEmail(protocolo),
+                html: formataEmail(protocolo, nome),
             },
             (err, info) => {
                 if (err) {
@@ -138,7 +132,7 @@ export async function POST(request: Request) {
                 where: { id: inscricao.id },
                 data: { protocolo: protocolo_gerado }
             });
-            enviarEmail(email, protocolo_gerado);
+            enviarEmail(email, protocolo_gerado, nome);
             return protocolo_gerado;
         });
 

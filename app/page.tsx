@@ -36,7 +36,7 @@ export default function CMPUForm() {
     setLoading(true);
 
     try {
-      if (!nomeEntidade || !nome || !email || !confirmeEmail || !segmento) {
+      if (!nomeEntidade || !nome || !email || !confirmeEmail || !segmento || !documentoCandidato) {
         setMessage({ type: 'error', text: "Por favor, preencha todos os campos obrigatórios e confirme as informações." });
         setLoading(false);
         return;
@@ -283,6 +283,7 @@ export default function CMPUForm() {
                     id="doc-candidato"
                     type="file"
                     accept=".zip"
+                    required
                     onChange={(e) => e.target.files && setDocumentoCandidato(e.target.files[0])}
                     className="hidden"
                   />
