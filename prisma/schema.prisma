@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Inscricao {
+    id           Int      @id @default(autoincrement())
+    nomeChapa    String?
+    nomeEntidade String
+    segmento     String
+    is_chapa     Boolean
+    nome         String
+    email        String
+    protocolo    String?  @unique
+    createdAt    DateTime @default(now())
+
+    arquivo      Arquivo?
+
+    @@map("inscricao")
+}
+
+model Arquivo {
+    id           String    @id @default(uuid())
+    caminho      String    
+    inscricaoId  Int       @unique 
+    criadoEm     DateTime  @default(now())
+    atualizadoEm DateTime  @default(now()) @updatedAt 
+
+    inscricao    Inscricao @relation(fields: [inscricaoId], references: [id])
+
+    @@map("arquivos") // Nome da tabela no banco de dados
+}
