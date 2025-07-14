@@ -30,6 +30,15 @@ export default function CMPUForm() {
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const [loading, setLoading] = useState(false);
 
+  function verificaArquivoZip(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    const split = file?.name.split(".");
+    const type = split && split[split?.length - 1];
+    if (file && type && type === "zip")
+      setDocumentoCandidato(file);
+    else toast.error("Só é possível enviar arquivos compactados (zip)");
+  }
+
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setMessage(null);
@@ -284,7 +293,7 @@ export default function CMPUForm() {
                     type="file"
                     accept=".zip"
                     required
-                    onChange={(e) => e.target.files && setDocumentoCandidato(e.target.files[0])}
+                    onChange={(e) => e.target.files && verificaArquivoZip(e)}
                     className="hidden"
                   />
                 </div>
