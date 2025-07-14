@@ -7,8 +7,6 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import Image from "next/image";
 import Link from "next/link";
-import cmpu from "../public/logo-final-eleicao-CMPU_300x200.png"
-import logo from "../public/logo-urban.png"
 import { createInscricao } from "@/services/inscricao";
 import { toast } from "sonner";
 
@@ -98,8 +96,8 @@ export default function CMPUForm() {
     <div className="flex flex-col min-h-screen bg-gray-100 md:px-18">
       <div className="w-full max-w-[1500px] mx-auto">
         <div className="flex justify-between items-center p-6">
-          <Image className="w-40" src={cmpu} alt={"logo cmpu"} />
-          <Image className="w-40" src={logo} alt={"logo sp"} />
+          <Image className="w-40" src="/cmpu_logo.png" alt={"logo cmpu"} />
+          <Image className="w-40" src="/prefeitura_logo.png" alt={"logo sp"} />
         </div>
 
         <div className="flex px-6 pb-4 gap-9">

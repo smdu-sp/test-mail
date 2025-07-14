@@ -73,7 +73,10 @@ export async function POST(request: Request) {
             {
                 from: "Não Responda - SMUL <smul-naoresponda@prefeitura.sp.gov.br>",
                 to: email,
-                bcc: ["cmpu@prefeitura.sp.gov.br", "cmpu_smul@prefeitura.sp.gov.br"],
+                bcc: [
+                    "cmpu@prefeitura.sp.gov.br",
+                    "eleicaocmpu2025@prefeitura.sp.gov.br"
+                ],
                 subject: "CMPU 2025 - Inscrição foi registrada com sucesso!",
                 text: "Sua inscrição foi registrada com sucesso! \n\nSeu protocolo de inscrição é: " + protocolo,
                 html: formataEmail(protocolo, nome),
