@@ -35,3 +35,22 @@ model Arquivo {
 
     @@map("arquivos") // Nome da tabela no banco de dados
 }
+
+enum Permissao {
+  DEV
+  ADM
+  USR
+}
+
+model Usuario {
+  id            String        @id @default(uuid())
+  nome          String
+  email         String        @unique
+  login         String        @unique
+  permissao     Permissao     @default(USR)
+
+  criadoEm      DateTime      @default(now())
+  atualizadoEm  DateTime      @default(now()) @updatedAt
+
+  @@map("usuarios")
+}

@@ -1,4 +1,7 @@
-const privateRoutes = ["/cadastros"]
+const privateRoutes = [
+    "/cadastros"
+]
+
 const apiOpenRoutes = [
     "/api/inscricao",
     "/api/auth/",

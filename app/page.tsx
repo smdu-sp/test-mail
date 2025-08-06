@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import Image from "next/image";
 import Link from "next/link";
-import { createInscricao } from "@/services/inscricao";
+import { criar } from "@/services/inscricao";
 import { toast } from "sonner";
 
 export default function CMPUForm() {
@@ -67,7 +67,7 @@ export default function CMPUForm() {
         formData.append('arquivo', documentoCandidato);
       }
 
-      const response = await createInscricao(formData);
+      const response = await criar(formData);
       console.log(response);
       if (response && response !== "") {
         toast.success('Inscrição enviada com sucesso! Protocolo: ' + response);
@@ -96,8 +96,8 @@ export default function CMPUForm() {
     <div className="flex flex-col min-h-screen bg-gray-100 md:px-18">
       <div className="w-full max-w-[1500px] mx-auto">
         <div className="flex justify-between items-center p-6">
-          <Image className="w-40" src="/cmpu_logo.png" alt={"logo cmpu"} />
-          <Image className="w-40" src="/prefeitura_logo.png" alt={"logo sp"} />
+          <Image width={160} height={160} className="w-28 sm:w-40" src="/cmpu_logo.png" alt={"Logo Concurso Municipal de Política Urbana"} />
+          <Image width={160} height={125} className="w-28 sm:w-40" src="/prefeitura_logo.png" alt={"Logo Prefeitura de São Paulo"} />
         </div>
 
         <div className="flex px-6 pb-4 gap-9">
