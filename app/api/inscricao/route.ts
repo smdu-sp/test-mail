@@ -1,11 +1,9 @@
 // app/api/inscricao/route.ts
 
-import { PrismaClient } from "@prisma/client";
+import { db } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import fs from "fs";
 import * as nodemailer from "nodemailer";
-
-const prisma = new PrismaClient();
 
 function geraProtocolo(id: number) {
   const mascara = 17529 * id ** 2 + 85474;
@@ -63,6 +61,7 @@ function formataEmail(protocolo: string, nome: string) {
 
 
 export async function POST(request: Request) {
+    if (!db) return NextResponse.json({ message: "Erro ao criar inscrição" }, { status: 500 });
     function enviarEmail(email: string, protocolo: string, nome: string) {
         const transporter = nodemailer.createTransport({
             sendmail: true,
@@ -104,7 +103,7 @@ export async function POST(request: Request) {
         const is_chapa = is_chapa_str === 'true';
 
         let protocolo = "";
-        protocolo = await prisma.$transaction(async (tx) => {
+        protocolo = await db.$transaction(async (tx) => {
             const inscricao = await tx.inscricao.create({
                 data: {
                     nomeChapa: nomeChapa || null, 

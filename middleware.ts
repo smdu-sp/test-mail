@@ -1,5 +1,3 @@
-/** @format */
-
 import { authConfig } from '@/auth/config';
 import NextAuth from 'next-auth';
 import { apiOpenRoutes, privateRoutes } from './routes';

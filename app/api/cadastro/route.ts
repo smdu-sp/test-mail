@@ -1,7 +1,7 @@
 import * as inscricao from "@/services/inscricao";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
     try {
         const inscricoes = await inscricao.listar()
         return NextResponse.json(inscricoes, { status: 200 });

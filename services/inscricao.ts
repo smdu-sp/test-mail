@@ -1,6 +1,5 @@
-import { Inscricao } from "@prisma/client";
-
-
+import { Inscricao } from ".prisma/client";
+import { db } from "@/lib/prisma";
 async function criar(data: FormData): Promise<any> { 
     try {
         const response = await fetch('/api/inscricao', {
@@ -19,7 +18,7 @@ async function criar(data: FormData): Promise<any> {
 }
 
 async function listar(): Promise<Inscricao[]> {
-    const inscricoes = await prisma?.inscricao.findMany();
+    const inscricoes = await db?.inscricao.findMany();
     return inscricoes || [];
 }
 
