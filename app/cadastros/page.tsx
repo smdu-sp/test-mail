@@ -20,7 +20,7 @@ async function Cadastros() {
 	return (
 		<div className='flex min-h-svh flex-col items-center gap-6 bg-muted p-6 md:p-10 mx-auto'>
 			<h1 className='text-2xl font-bold'>Inscrições</h1>
-			<div className="w-[90%]">
+			<div className="w-[90%] max-w-7xl">
 				<DataTable
 					columns={columns}
 					data={inscricoesData || []}
