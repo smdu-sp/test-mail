@@ -18,9 +18,9 @@ async function Cadastros() {
 	});
 	const inscricoesData = await inscricoes.json();
 	return (
-		<div className='flex min-h-svh flex-col items-center gap-6 bg-muted p-6 md:p-10 mx-auto'>
-			<h1 className='text-2xl font-bold'>Inscrições</h1>
-			<div className="w-[90%] max-w-7xl">
+		<div className='  px-0 md:px-8 relative pb-20 md:pb-14 h-full container mx-auto '>
+			<h1 className='text-xl md:text-4xl font-bold'>Usuários</h1>
+			<div className='w-full'>
 				<DataTable
 					columns={columns}
 					data={inscricoesData || []}
