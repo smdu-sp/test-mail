@@ -1,5 +1,6 @@
 /** @format */
 
+import { bind } from '@/services/ldap';
 import Credentials from 'next-auth/providers/credentials';
 
 export const authConfig = {
@@ -14,18 +15,9 @@ export const authConfig = {
 				const date = new Date();
 				const { login, senha } = credentials;
 				if (!login || !senha) return null;
-				const resposta = await fetch(
-					`${process.env.BASE_URL || 'http://localhost:3000'}/api/ldap/bind`,
-					{
-						method: 'POST',
-						body: JSON.stringify({
-							login: login as string,
-							senha: senha as string,
-						}),
-					},
-				);
-				if (resposta.status !== 200) return null;
-				const { usuario } = await resposta.json();
+				const resultado = await bind(login as string, senha as string);
+				console.log(resultado);
+				const usuario = resultado;
 				if (!usuario) return null;
 				if (date < new Date('2025-06-02') && usuario.permissao !== 'DEV')
 					return null;
@@ -34,7 +26,6 @@ export const authConfig = {
 					email: usuario.email,
 					nome: usuario.nome,
 					login: usuario.login,
-					telefone: usuario.telefone,
 					permissao: usuario.permissao,
 				};
 			},
