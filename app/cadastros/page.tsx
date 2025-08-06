@@ -18,8 +18,8 @@ async function Cadastros() {
 	});
 	const inscricoesData = await inscricoes.json();
 	return (
-		<div className='  px-0 md:px-8 relative pb-20 md:pb-14 h-full container mx-auto '>
-			<h1 className='text-xl md:text-4xl font-bold'>Usuários</h1>
+		<div className='px-0 md:px-8 relative pb-20 md:pb-14 h-full container mx-auto flex flex-col gap-6 py-6'>
+			<h1 className='text-xl md:text-4xl font-bold'>Inscrições</h1>
 			<div className='w-full'>
 				<DataTable
 					columns={columns}
