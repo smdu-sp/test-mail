@@ -80,7 +80,7 @@ export async function POST(request: Request) {
                 text: "Sua inscrição foi registrada com sucesso! \n\nSeu protocolo de inscrição é: " + protocolo,
                 html: formataEmail(protocolo, nome),
             },
-            (err, info) => {
+            (err) => {
                 if (err) {
                     console.error(err);
                     return;
