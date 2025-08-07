@@ -68,7 +68,6 @@ export default function CMPUForm() {
       }
 
       const response = await criar(formData);
-      console.log(response);
       if (response && response !== "") {
         toast.success('Inscrição enviada com sucesso! Protocolo: ' + response);
         // setMessage({ type: 'success', text: `Inscrição enviada com sucesso! Protocolo: ${response}` });

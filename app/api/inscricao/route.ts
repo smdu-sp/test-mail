@@ -85,8 +85,6 @@ export async function POST(request: Request) {
                     console.error(err);
                     return;
                 }
-                console.log(info.envelope);
-                console.log(info.messageId);
             }
         );
     }

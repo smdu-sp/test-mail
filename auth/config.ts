@@ -16,7 +16,6 @@ export const authConfig = {
 				const { login, senha } = credentials;
 				if (!login || !senha) return null;
 				const resultado = await bind(login as string, senha as string);
-				console.log(resultado);
 				const usuario = resultado;
 				if (!usuario) return null;
 				if (date < new Date('2025-06-02') && usuario.permissao !== 'DEV')
