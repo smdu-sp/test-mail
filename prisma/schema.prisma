@@ -10,12 +10,12 @@ datasource db {
 
 model Inscricao {
     id           Int      @id @default(autoincrement())
-    nomeChapa    String?
-    nomeEntidade String
-    segmento     String
+    nomeChapa    String?  @db.Text
+    nomeEntidade String   @db.Text
+    segmento     String   @db.Text
     is_chapa     Boolean
-    nome         String
-    email        String
+    nome         String   @db.Text
+    email        String   @db.Text
     protocolo    String?  @unique
     createdAt    DateTime @default(now())
 
@@ -26,7 +26,7 @@ model Inscricao {
 
 model Arquivo {
     id           String    @id @default(uuid())
-    caminho      String    
+    caminho      String    @db.Text
     inscricaoId  Int       @unique 
     criadoEm     DateTime  @default(now())
     atualizadoEm DateTime  @default(now()) @updatedAt 
@@ -44,7 +44,7 @@ enum Permissao {
 
 model Usuario {
   id            String        @id @default(uuid())
-  nome          String
+  nome          String        @db.Text
   email         String        @unique
   login         String        @unique
   permissao     Permissao     @default(USR)
