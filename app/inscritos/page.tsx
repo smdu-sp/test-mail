@@ -16,6 +16,15 @@ export default function CMPUForm() {
         <div className="w-full">
           <div className="w-[96%] border-b-4 border-black mt-2 mx-auto mb-4"></div>
         </div>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <h1 className="text-2xl font-bold">Arquivos de inscritos</h1>
+          <Link href="/uploads.zip">
+            <Button>
+              <FileDown />
+              Baixar arquivos
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
