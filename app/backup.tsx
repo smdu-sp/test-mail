@@ -163,7 +163,7 @@ export default function CMPUForm() {
           )}
 
           <div className="mb-6 border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Informações da chapa
             </div>
             <div className="border border-gray-300 p-4 space-y-4">
@@ -254,7 +254,7 @@ export default function CMPUForm() {
           </div>
 
           <div className="mb-6  border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Anexos{" "}
               <span className="text-sm font-normal">
                 (Limite máximo de 250mb)
@@ -312,7 +312,7 @@ export default function CMPUForm() {
           </div>
 
           <div className="mb-6  border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Contato
             </div>
             <div className="border border-gray-300 p-4 space-y-4">

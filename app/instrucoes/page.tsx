@@ -154,7 +154,7 @@ export default function InstrucoesPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 md:px-18">
-      <div className="w-full max-w-[1500px] mx-auto">
+      <div className="w-full max-w-[1200px] mx-auto">
         <div className="flex justify-between items-center p-6">
           <Image width={160} height={160} className="w-28 sm:w-40" src="/cmpu_logo.png" alt={"Logo Concurso Municipal de Política Urbana"} />
           <Image width={160} height={125} className="w-28 sm:w-40" src="/prefeitura_logo.png" alt={"Logo Prefeitura de São Paulo"} />
@@ -170,6 +170,7 @@ export default function InstrucoesPage() {
             </Button>
           </Link>
         </div>
+        <div className="w-[96%] border-b-4 border-black mt-2 mx-auto mb-4"></div>
 
         <div className="px-6">
           <div className="mb-6">
@@ -183,7 +184,7 @@ export default function InstrucoesPage() {
 
           {/* Métodos disponíveis */}
           <div className="mb-6 border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Escolha o método
             </div>
             <div className="border border-gray-300 p-4">
@@ -216,7 +217,7 @@ export default function InstrucoesPage() {
 
           {/* Instruções passo a passo */}
           <div className="mb-6 border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Instruções Passo a Passo
             </div>
             <div className="border border-gray-300 p-4">
@@ -243,7 +244,7 @@ export default function InstrucoesPage() {
 
           {/* Dicas e informações adicionais */}
           <div className="mb-6 border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Dicas Importantes
             </div>
             <div className="border border-gray-300 p-4">
