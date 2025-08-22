@@ -265,7 +265,7 @@ export default function CMPUForm() {
                 Recomendamos que os documentos da candidatura sejam enviados no
                 formato pasta compactada (Arquivo ZIP).{" "}
                 <Link
-                  href="https://eleicaocmpu2023.prefeitura.sp.gov.br/instrucoes-para-envio-da-documentacao/"
+                  href="/instrucoes"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 underline"
