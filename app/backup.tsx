@@ -95,7 +95,7 @@ export default function CMPUForm() {
     <div className="flex flex-col min-h-screen bg-gray-100 md:px-18">
       <div className="w-full max-w-[1500px] mx-auto">
         <div className="flex justify-between items-center p-6">
-          <Image width={160} height={160} className="w-28 sm:w-40" src="/cmpu_logo.png" alt={"Logo Concurso Municipal de Política Urbana"} />
+          <Image width={160} height={160} className="w-28 sm:w-40" src="/cmpu_logo.png" alt={"Logo Conselho Municipal de Política Urbana"} />
           <Image width={160} height={125} className="w-28 sm:w-40" src="/prefeitura_logo.png" alt={"Logo Prefeitura de São Paulo"} />
         </div>
 
