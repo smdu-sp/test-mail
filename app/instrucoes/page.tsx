@@ -194,7 +194,7 @@ export default function InstrucoesPage() {
                     className={`border-2 cursor-pointer transition-all hover:shadow-lg p-4 ${
                       activeMethod === method.id ? 'border-[#62458D] bg-purple-50' : 'border-gray-300'
                     }`}
-                    onClick={() => setActiveMethod(method.id as any)}
+                    onClick={() => setActiveMethod(method.id as typeof activeMethod)}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="font-semibold text-lg">{method.title}</h3>
