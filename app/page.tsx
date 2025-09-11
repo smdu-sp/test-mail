@@ -140,7 +140,7 @@ export default function CMPUForm() {
             <Button
               onClick={() => setTipoInscricao("individual")}
               variant="outline"
-              className={`bg-[#EA4379] hover:bg-pink-600  text-white px-8 py-2 rounded-full border-pink-500 w-44 h-13 font-bold text-lg transition-opacity duration-300 ${tipoInscricao !== "individual" && "opacity-70"
+              className={`!bg-[#EA4379] !hover:opacity-50  text-white px-8 py-2 rounded-full !border-pink-500 w-44 h-13 font-bold text-lg transition-opacity duration-300 ${tipoInscricao !== "individual" && "opacity-70"
                 }`}
             >
               Individual
@@ -170,7 +170,7 @@ export default function CMPUForm() {
           )}
 
           <div className="mb-6 border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               {tipoInscricao === "chapa" ? "Informações da chapa" : "Informações da candidatura"}
             </div>
             <div className="border border-gray-300 p-4 space-y-4">
@@ -261,7 +261,7 @@ export default function CMPUForm() {
           </div>
 
           <div className="mb-6  border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Anexos{" "}
               <span className="text-sm font-normal">
                 (Limite máximo de 250mb)
@@ -272,7 +272,7 @@ export default function CMPUForm() {
                 Recomendamos que os documentos da candidatura sejam enviados no
                 formato pasta compactada (Arquivo ZIP).{" "}
                 <Link
-                  href="https://eleicaocmpu2023.prefeitura.sp.gov.br/instrucoes-para-envio-da-documentacao/"
+                  href="/instrucoes"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 underline"
@@ -319,7 +319,7 @@ export default function CMPUForm() {
           </div>
 
           <div className="mb-6  border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Contato
             </div>
             <div className="border border-gray-300 p-4 space-y-4">
