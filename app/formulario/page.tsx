@@ -1,21 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { criar } from "@/services/inscricao";
+import { Checkbox } from "@/components/ui/checkbox";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { criar } from "@/services/inscricao";
 import { toast } from "sonner";
 
 export default function CMPUForm() {
-  const [tipoInscricao, setTipoInscricao] = useState("individual");
-  const dataInicio = new Date("2025-09-12 00:00:00");
-  const dataFim = new Date("2025-09-27 23:59:59.999");
-  const agora = new Date();
-  const podeInscrever = agora >= dataInicio && agora <= dataFim;
+  const [tipoInscricao, setTipoInscricao] = useState("chapa");
 
   const [nomeChapa, setNomeChapa] = useState("");
   const [nomeEntidade, setNomeEntidade] = useState("");
@@ -87,9 +83,8 @@ export default function CMPUForm() {
       setConfirmo(false);
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.error({error});
-      if (error?.message === "Inscrições encerradas.") toast.error(error.message);
-      else toast.error('Ocorreu um erro ao enviar sua inscrição. Tente novamente mais tarde.');
+      console.error("Erro ao enviar inscrição:", error);
+      toast.error('Ocorreu um erro ao enviar sua inscrição. Tente novamente mais tarde.');
       // setMessage({ type: 'error', text: error.message || "Ocorreu um erro ao enviar sua inscrição. Tente novamente mais tarde." });
     } finally {
       setLoading(false);
@@ -98,9 +93,9 @@ export default function CMPUForm() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 md:px-18">
-      <div className="w-full max-w-[1200px] mx-auto">
+      <div className="w-full max-w-[1500px] mx-auto">
         <div className="flex justify-between items-center p-6">
-          <Image width={160} height={160} className="w-28 sm:w-40" src="/cmpu_logo.png" alt={"Logo Concurso Municipal de Política Urbana"} />
+          <Image width={160} height={160} className="w-28 sm:w-40" src="/cmpu_logo.png" alt={"Logo Conselho Municipal de Política Urbana"} />
           <Image width={160} height={125} className="w-28 sm:w-40" src="/prefeitura_logo.png" alt={"Logo Prefeitura de São Paulo"} />
         </div>
 
@@ -119,7 +114,7 @@ export default function CMPUForm() {
           </Link>
         </div>
 
-        {podeInscrever && <><div className="flex flex-col md:flex-row px-6 pb-6 justify-between">
+        <div className="flex flex-col md:flex-row px-6 pb-6 justify-between">
           <div className="mb-2">
             <div className="font-semibold text-sm text-[26px]">
               Tipo de inscrição
@@ -130,7 +125,6 @@ export default function CMPUForm() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
-              disabled
               onClick={() => setTipoInscricao("chapa")}
               className={`bg-[#62458D] hover:bg-purple-700 text-white px-8 py-2 rounded-full w-44 h-13 font-bold text-lg transition-opacity duration-300 ${tipoInscricao !== "chapa" && "opacity-70"
                 }`}
@@ -158,8 +152,7 @@ export default function CMPUForm() {
             </h2>
             <p className="text-[22px] font-medium text-primary">
               Preencha os campos abaixo para realizar a inscrição para uma das
-              2 vagas ainda disponíveis no Conselho Municipal de Política Urbana (CMPU),
-              conforme o <a className="text-blue-500 underline" target="_blank" href="https://prefeitura.sp.gov.br/web/licenciamento/w/comunicado-smul.atecc.cmpu/001/2025">Comunicado da Comissão Eleitoral Paritária do CMPU nº 001/2025</a>
+              22 vagas no Conselho Municipal de Política Urbana (CMPU)
             </p>
           </div>
 
@@ -170,8 +163,8 @@ export default function CMPUForm() {
           )}
 
           <div className="mb-6 border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
-              {tipoInscricao === "chapa" ? "Informações da chapa" : "Informações da candidatura"}
+            <div className="bg-black text-white p-3 font-semibold">
+              Informações da chapa
             </div>
             <div className="border border-gray-300 p-4 space-y-4">
               {tipoInscricao === "chapa" && (
@@ -204,16 +197,16 @@ export default function CMPUForm() {
                 <Label className="text-sm font-medium">Segmento</Label>
                 <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 text-sm">
                   <div className="space-y-2">
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="movimento-moradia" name="segmento" value="Movimento de moradia" checked={segmento === "Movimento de moradia"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="movimento-moradia" name="segmento" value="Movimento de moradia" checked={segmento === "Movimento de moradia"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="movimento-moradia">Movimento de moradia</label>
                     </div>
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="entidades-academicas" name="segmento" value="Entidades acadêmicas e de pesquisa" checked={segmento === "Entidades acadêmicas e de pesquisa"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="entidades-academicas" name="segmento" value="Entidades acadêmicas e de pesquisa" checked={segmento === "Entidades acadêmicas e de pesquisa"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="entidades-academicas">Entidades acadêmicas e de pesquisa</label>
                     </div>
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="movimentos-mobilidade" name="segmento" value="Movimentos de Mobilidade Urbana" checked={segmento === "Movimentos de Mobilidade Urbana"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="movimentos-mobilidade" name="segmento" value="Movimentos de Mobilidade Urbana" checked={segmento === "Movimentos de Mobilidade Urbana"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="movimentos-mobilidade">Movimentos de Mobilidade Urbana</label>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -223,35 +216,35 @@ export default function CMPUForm() {
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="associacoes-bairro" name="segmento" value="Associações de bairro" checked={segmento === "Associações de bairro"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="associacoes-bairro" name="segmento" value="Associações de bairro" checked={segmento === "Associações de bairro"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="associacoes-bairro">Associações de bairro</label>
                     </div>
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="movimento-ambientalista" name="segmento" value="Movimentos ambientalistas" checked={segmento === "Movimentos ambientalistas"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="movimento-ambientalista" name="segmento" value="Movimentos ambientalistas" checked={segmento === "Movimentos ambientalistas"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="movimento-ambientalista">Movimentos ambientalistas</label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <input type="radio" id="movimento-cultural" name="segmento" value="Movimento Cultural" checked={segmento === "Movimento Cultural"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="movimento-cultural">Movimento Cultural</label>
                     </div>
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="entidades-profissionais" name="segmento" value="Entidades Profissionais" checked={segmento === "Entidades Profissionais"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="entidades-profissionais" name="segmento" value="Entidades Profissionais" checked={segmento === "Entidades Profissionais"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="entidades-profissionais">Entidades Profissionais</label>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="setor-empresarial" name="segmento" value="Setor empresarial" checked={segmento === "Setor empresarial"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="setor-empresarial" name="segmento" value="Setor empresarial" checked={segmento === "Setor empresarial"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="setor-empresarial">Setor empresarial</label>
                     </div>
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="ongs" name="segmento" value="ONG" checked={segmento === "ONG"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="ongs" name="segmento" value="ONG" checked={segmento === "ONG"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="ongs">ONG</label>
                     </div>
-                    <div className="flex items-center space-x-2 opacity-50">
-                      <input disabled type="radio" id="entidades-religiosas" name="segmento" value="Entidade Religiosa" checked={segmento === "Entidade Religiosa"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
+                    <div className="flex items-center space-x-2">
+                      <input type="radio" id="entidades-religiosas" name="segmento" value="Entidade Religiosa" checked={segmento === "Entidade Religiosa"} onChange={(e) => setSegmento(e.target.value)} className="w-4 h-4" />
                       <label htmlFor="entidades-religiosas">Entidade Religiosa</label>
                     </div>
                   </div>
@@ -261,7 +254,7 @@ export default function CMPUForm() {
           </div>
 
           <div className="mb-6  border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Anexos{" "}
               <span className="text-sm font-normal">
                 (Limite máximo de 250mb)
@@ -272,7 +265,7 @@ export default function CMPUForm() {
                 Recomendamos que os documentos da candidatura sejam enviados no
                 formato pasta compactada (Arquivo ZIP).{" "}
                 <Link
-                  href="https://eleicaocmpu2023.prefeitura.sp.gov.br/instrucoes-para-envio-da-documentacao/"
+                  href="/instrucoes"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 underline"
@@ -319,7 +312,7 @@ export default function CMPUForm() {
           </div>
 
           <div className="mb-6  border-foreground border-2">
-            <div className="bg-foreground text-white p-3 font-semibold">
+            <div className="bg-black text-white p-3 font-semibold">
               Contato
             </div>
             <div className="border border-gray-300 p-4 space-y-4">
@@ -376,7 +369,7 @@ export default function CMPUForm() {
               {loading ? 'Enviando...' : 'Enviar'}
             </Button>
           </div>
-        </div></>}
+        </div>
       </div>
     </div>
   );
