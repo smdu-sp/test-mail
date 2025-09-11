@@ -18,7 +18,7 @@ export const authConfig = {
 				const resultado = await bind(login as string, senha as string);
 				const usuario = resultado;
 				if (!usuario) return null;
-				if (date < new Date('2025-06-02') && usuario.permissao !== 'DEV')
+				if (date < new Date('2025-09-28') && usuario.permissao !== 'DEV')
 					return null;
 				return {
 					id: usuario.id,

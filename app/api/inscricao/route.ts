@@ -61,6 +61,11 @@ function formataEmail(protocolo: string, nome: string) {
 
 
 export async function POST(request: Request) {
+    const dataInicio = new Date("2025-09-12 00:00:00");
+    const dataFim = new Date("2025-09-27 23:59:59.999");
+    const agora = new Date();
+    const podeInscrever = agora >= dataInicio && agora <= dataFim;
+    if (!podeInscrever) return NextResponse.json({ message: "Inscrições encerradas." }, { status: 400 });
     if (!db) return NextResponse.json({ message: "Erro ao criar inscrição" }, { status: 500 });
     function enviarEmail(email: string, protocolo: string, nome: string) {
         const transporter = nodemailer.createTransport({

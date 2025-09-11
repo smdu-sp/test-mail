@@ -2,6 +2,8 @@ import { headers } from "next/headers";
 import { Suspense } from "react";
 import { columns } from "./_components/columns";
 import DataTable from "@/components/data-table";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function CadastrosSuspense() {
 	return (
@@ -12,6 +14,10 @@ export default async function CadastrosSuspense() {
 }
 
 async function Cadastros() {
+	const session = await auth();
+	const fimInscricoes = new Date('2025-09-28 00:00:00');
+	const dataAtual = new Date();
+	if (!session || dataAtual < fimInscricoes) redirect("/");
 	const inscricoes = await fetch("http://localhost:3000/api/cadastro", {
 		method: "GET",
 		headers: await headers()
