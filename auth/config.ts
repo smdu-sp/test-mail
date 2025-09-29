@@ -14,7 +14,7 @@ export const authConfig = {
 				const date = new Date();
 				const { login, senha } = credentials;
 				if (!login || !senha) return null;
-				const resultado = await fetch(`${process.env.BASE_URL || "http://localhost:3000"}/api/ldap/bind`, {
+				const resultado = await fetch(`${process.env.BASE_URL || "https://eleicaocmpu2025.prefeitura.sp.gov.br"}/api/ldap/bind`, {
 					method: 'POST',
 					body: JSON.stringify({ login, senha }),
 				});
