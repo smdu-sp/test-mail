@@ -11,24 +11,51 @@ export const columns: ColumnDef<Inscricao>[] = [
 	},
 	{
 		accessorKey: 'nomeChapa',
-		header: 'Nome da Chapa',
+		header: 'Chapa',
+		cell: ({ row }) => {
+			const chapa = row.original.nomeChapa;
+			const shortChapa = chapa?.substring(0, 50) || '-';
+			return (
+				<span title={chapa || '-'}>
+					{shortChapa}{chapa && chapa.length > 50 && "..."}
+				</span>
+			);
+		},
 	},
 	{
 		accessorKey: 'nomeEntidade',
-		header: 'Nome da Entidade',
+		header: 'Entidade',
+		cell: ({ row }) => {
+			const entidade = row.original.nomeEntidade;
+			const shortEntidade = entidade?.substring(0, 50) || '-';
+			return (
+				<span title={entidade || '-'}>
+					{shortEntidade}{entidade.length > 50 && "..."}
+				</span>
+			);
+		},
 	},
 	{
 		accessorKey: 'segmento',
 		header: 'Segmento',
+		cell: ({ row }) => {
+			const segmento = row.original.segmento;
+			const shortSegmento = segmento?.substring(0, 50) || '-';
+			return (
+				<span title={segmento || '-'}>
+					{shortSegmento}{segmento.length > 50 && "..."}
+				</span>
+			);
+		},
 	},
 	{
 		accessorKey: 'is_chapa',
-		header: () => <p className='text-center'>Chapa</p>,
+		header: () => <p className='text-center'>Tipo</p>,
 		cell: ({ row }) => {
 			const chapa = row.original.is_chapa;
 			return (
 				<div className='flex items-center justify-center'>
-					<Badge variant={`${chapa ? 'default' : 'secondary'}`}>
+					<Badge variant={`${chapa ? 'default' : 'secondary'}`} className='text-white'>
 						{chapa ? 'Chapa' : 'Individual'}
 					</Badge>
 				</div>
@@ -38,10 +65,28 @@ export const columns: ColumnDef<Inscricao>[] = [
 	{
 		accessorKey: 'nome',
 		header: 'Nome',
+		cell: ({ row }) => {
+			const nome = row.original.nome;
+			const shortNome = nome?.substring(0, 50) || '-';
+			return (
+				<span title={nome || '-'}>
+					{shortNome}{nome.length > 50 && "..."}
+				</span>
+			);
+		},
 	},
 	{
 		accessorKey: 'email',
 		header: 'E-mail',
+		cell: ({ row }) => {
+			const email = row.original.email;
+			const shortEmail = email?.substring(0, 50) || '-';
+			return (
+				<span title={email || '-'}>
+					{shortEmail}{email.length > 50 && "..."}
+				</span>
+			);
+		},
 	},
 	{
 		accessorKey: 'createdAt',

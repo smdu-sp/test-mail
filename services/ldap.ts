@@ -1,4 +1,3 @@
-import 'server-only';
 import { db } from '@/lib/prisma';
 import { Client, createClient } from 'ldapjs';
 
