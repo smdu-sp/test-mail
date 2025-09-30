@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 
 export default async function Arquivos() {
+    redirect("/");
 	const downloadArquivosData = new Date(process.env.DOWNLOAD_DATE || '2025-09-29 14:00:00');
 	const dataAtual = new Date();
 	const podeBaixar = dataAtual >= downloadArquivosData;
